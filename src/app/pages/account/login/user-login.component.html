@@ -1,1 +1,46 @@
-<p>user-login works!</p>
+<section class="min-h-screen flex box-border justify-center items-center">
+  <div class="bg-bgLogin rounded-2xl flex max-w-3xl p-5 items-center">
+    <div class="md:w-1/2 px-8">
+      <h2 class="font-bold text-3xl text-white">ورود</h2>
+      <p class="text-sm mt-4 mb-4 text-white">
+        نام کاربری و رمز عبور خود را وارد کنید
+      </p>
+
+      <form action="" class="flex flex-col gap-4" [formGroup]="customForm" (submit)="save()">
+        <app-input placeHolder="نام کاربری یا ایمیل" type="email" formControlName="email"></app-input>
+        <div *ngIf="customForm.get('email')?.invalid">
+          <span *ngIf="customForm.get('email')!.errors">test</span>
+        </div>
+
+        <div class="relative">
+          <app-input placeHolder="رمز عبور" type="password" formControlName="password"></app-input>
+        </div>
+
+        <button
+        class="bg-blueLight text-white py-2 rounded-xl hover:scale-105 p-6 duration-300 hover:bg-blueHover font-medium w-full"
+        type="submit"
+
+        >
+        ورود   </button>
+      </form>
+      <div class="mt-6 items-center text-gray-100">
+        <hr class="border-gray-300" />
+        <p class="text-center text-sm"></p>
+        <hr class="border-gray-300" />
+      </div>
+
+      <div class="mt-10 text-sm border-b border-gray py-5 playfair tooltip hover:text-white hover:cursor-pointer">
+        رمز عبور خود را فراموش کرده اید؟
+      </div>
+
+      <div class="mt-4 text-sm flex justify-between items-center container-mr">
+        <p class="mr-3 md:mr-0">قبلا ثبت نام کرده اید؟</p>
+        <app-link-rout routerLink="/account/register"></app-link-rout>
+      </div>
+    </div>
+    <div class="md:block hidden w-1/2">
+     <app-slidshow></app-slidshow>
+    </div>
+  </div>
+</section>
+
