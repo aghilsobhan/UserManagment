@@ -7,12 +7,13 @@ import { UserRegisterComponent } from '../register/user-register.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { ModuleUiModule } from 'src/app/ui/module/module-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
 @NgModule({
   declarations: [AccountComponent, UserLoginComponent, UserRegisterComponent],
-  imports: [CommonModule, AccountRoutingModule,ModuleUiModule ,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, AccountRoutingModule,ModuleUiModule ,FormsModule,ReactiveFormsModule,],
 
 })
 export class AccountModule {}

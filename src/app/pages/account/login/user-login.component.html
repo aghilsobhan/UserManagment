@@ -6,22 +6,28 @@
         نام کاربری و رمز عبور خود را وارد کنید
       </p>
 
-      <form action="" class="flex flex-col gap-4" [formGroup]="customForm" (submit)="save()">
-        <app-input placeHolder="نام کاربری یا ایمیل" type="email" formControlName="email"></app-input>
-        <div *ngIf="customForm.get('email')?.invalid">
-          <span *ngIf="customForm.get('email')!.errors">test</span>
-        </div>
-
+      <form
+        action=""
+        class="flex flex-col gap-4"
+        [formGroup]="customForm"
+        (submit)="save()"
+      >
+        <app-input
+          [control]="customForm.controls['email']"
+          inputId="email"
+          placeHolder="نام کاربری یا ایمیل"
+          type="email"
+        ></app-input>
         <div class="relative">
-          <app-input placeHolder="رمز عبور" type="password" formControlName="password"></app-input>
+          <app-input
+            placeHolder="رمز عبور"
+            type="password"
+            [control]="customForm.controls['password']"
+            inputId="password"
+          ></app-input>
         </div>
 
-        <button
-        class="bg-blueLight text-white py-2 rounded-xl hover:scale-105 p-6 duration-300 hover:bg-blueHover font-medium w-full"
-        type="submit"
-
-        >
-        ورود   </button>
+        <app-button name="ورود" type="submit"> </app-button>
       </form>
       <div class="mt-6 items-center text-gray-100">
         <hr class="border-gray-300" />
@@ -29,7 +35,9 @@
         <hr class="border-gray-300" />
       </div>
 
-      <div class="mt-10 text-sm border-b border-gray py-5 playfair tooltip hover:text-white hover:cursor-pointer">
+      <div
+        class="mt-10 text-sm border-b border-gray py-5 playfair tooltip hover:text-white hover:cursor-pointer"
+      >
         رمز عبور خود را فراموش کرده اید؟
       </div>
 
@@ -39,8 +47,7 @@
       </div>
     </div>
     <div class="md:block hidden w-1/2">
-     <app-slidshow></app-slidshow>
+      <app-slidshow></app-slidshow>
     </div>
   </div>
 </section>
-

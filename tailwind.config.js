@@ -22,7 +22,8 @@ module.exports = {
       'blueBtn':'#002D74',
       'blueHover':'#206ab1',
       'gray':'#D1D5DB',
-      'errorColor':'#F14C4C'
+      'errorColor':'#F14C4C',
+      'colorSuccess':'#1E8018',
 
     },
     extend: {

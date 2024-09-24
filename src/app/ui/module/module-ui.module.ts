@@ -5,14 +5,16 @@ import { ButtonComponent } from '../button/button.component';
 import { InputComponent } from '../input/input.component';
 import { SlidshowComponent } from '../slidshow/slidshow.component';
 import { LinkRoutComponent } from '../link-rout/link-rout.component';
-import { AccountModule } from 'src/app/pages/account/module/account.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent],
   imports: [
     CommonModule,
-    
+    ReactiveFormsModule,
+    FormsModule
+
   ],
   exports:[ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent]
 })

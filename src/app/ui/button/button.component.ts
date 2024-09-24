@@ -8,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() name:string='';
-  @Input() setRouteLink:string='';
+  @Input() type:string='';
+
 
 
 }

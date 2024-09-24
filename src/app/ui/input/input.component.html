@@ -1,10 +1,20 @@
 <label class="form-control w-full max-w-xs">
-  <div class="label">
-  </div>
-  <input type="{{type}}" placeholder="{{placeHolder}}" class="input input-bordered bg-white  w-full max-w-xs" />
-  <div class="label">
+  <div class="label"></div>
+  <input
+    type="{{type}}"
+    placeholder="{{placeHolder}}"
+    class="input input-bordered bg-white w-full max-w-xs"
+    [ngClass]="{'border-errorColor': control.invalid && control.touched,'input-bordered border-colorSuccess': control.valid && control.touched}"
+    [formControl]="control"
+    id="inputId"
+    [class.invalid]="control.touched || control.dirty && control.invalid && control.submit"
+  />
+  <ng-container *ngIf="control.touched || control.dirty && control.invalid">
+    <div *ngFor="let err of control.errors | keyvalue"  class="label-text-alt text-errorColor">
+      <br>
+      <span>{{errorMessage[$any(err.key)]}}</span>
+   </div>
+  </ng-container>
 
-    <!-- <span class="label-text-alt text-errorColor">Bottom Right label</span> -->
-  </div>
+
 </label>
-
