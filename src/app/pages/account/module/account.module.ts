@@ -7,12 +7,12 @@ import { UserRegisterComponent } from '../register/user-register.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { ModuleUiModule } from 'src/app/ui/module/module-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 
 
 @NgModule({
-  declarations: [AccountComponent, UserLoginComponent, UserRegisterComponent],
+  declarations: [AccountComponent, UserLoginComponent, UserRegisterComponent,DashboardComponent],
   imports: [CommonModule, AccountRoutingModule,ModuleUiModule ,FormsModule,ReactiveFormsModule,],
 
 })

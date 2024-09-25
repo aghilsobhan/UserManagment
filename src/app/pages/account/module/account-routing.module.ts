@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from '../account.component';
 import { UserLoginComponent } from '../login/user-login.component';
 import { UserRegisterComponent } from '../register/user-register.component';
+import { AuthGuard } from 'src/app/utils/AuthGuard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,9 @@ const routes: Routes = [
       { path: 'register', component: UserRegisterComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
+    
   },
+
 ];
 
 @NgModule({

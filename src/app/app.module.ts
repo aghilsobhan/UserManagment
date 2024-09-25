@@ -10,10 +10,12 @@ import {HttpClientModule} from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardModule } from './pages/dashboard/module/dashboard.module';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule,HttpClientModule,ToastrModule.forRoot(),BrowserAnimationsModule],
+  declarations: [AppComponent, PageNotFoundComponent, DashboardComponent],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule,ToastrModule.forRoot(),BrowserAnimationsModule,DashboardModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,8 +1,7 @@
-export class ResponseLogin{
-constructor(public result:any,public status:number,public messages:any,public message:string)
-
-{
-
+import { AuthenticationModel } from '../token/token';
+export interface ResponseLogin {
+  result: AuthenticationModel;
+  status: number;
+  messages: any;
+  message: string;
 }
-}
-
