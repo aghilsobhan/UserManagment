@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AxiosError } from 'axios';
+
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, catchError } from 'rxjs';
-import { LoginModel } from 'src/app/models/login/Mlogin';
-import { ResponseLogin } from 'src/app/models/login/ResposeLogin';
-import { AuthenticationModel } from 'src/app/models/token/token';
+import { BehaviorSubject } from 'rxjs';
+import { ProfileModel } from 'src/app/models/user/getprofile';
+
+import { LoginRequest } from 'src/app/models/user/loginRequest';
+import { LoginResponse } from 'src/app/models/user/loginResponse';
+import { AccountsService } from 'src/app/service/account/accounts.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { LoginService } from 'src/app/service/login/login.service';
+
 
 @Component({
   selector: 'app-user-login',
@@ -17,18 +19,17 @@ import { LoginService } from 'src/app/service/login/login.service';
 })
 export class UserLoginComponent implements OnInit {
   customForm!: FormGroup;
-  loginModel!: LoginModel;
   returnUrl: string = '';
   errorMessage :string | any='';
-  userSubject = new BehaviorSubject<ResponseLogin | null>(null);
-  user = this.userSubject.asObservable();
+  loginRequest!:LoginRequest;
   constructor(
-    private sendLogin: LoginService,
+    private accountService: AccountsService,
     private toast: ToastrService,
     private router: Router,
     private rout: ActivatedRoute,
     private auth: AuthService
   ) {}
+
   ngOnInit(): void {
     if (this.auth.getToken()) this.router.navigate(['dashboard']);
     this.customForm = new FormGroup({
@@ -46,37 +47,50 @@ export class UserLoginComponent implements OnInit {
       this.customForm.markAllAsTouched();
     }
     if (this.customForm.valid) {
-      this.loginModel = {
+      this.loginRequest = {
         userName: 'superadmin',
         password: 'Qwe123!@#',
         captchaText: 'bar',
         keepMeSignedIn: true,
       };
 
-        this.sendLogin.loginRequest(this.loginModel).subscribe({
-          next: (userLogin: ResponseLogin) => {
-            this.userSubject.next(userLogin);
+        this.accountService.loginRequest(this.loginRequest).subscribe({
+          next: (userLogin:LoginResponse) => {
+            if(userLogin?.result.token){
+              this.auth.setToken(userLogin?.result.token)
+              this.accountService.getProfile().subscribe({
+                next:(profileUser:ProfileModel)=>{
+                  this.auth.setAccountProfile(profileUser);
+                  this.router.navigate([this.returnUrl]);
+                },error:(error :any)=>{console.log(error);}
+               })
+
+            }else{
+              console.log('error in else if login',userLogin);
+
+              this.errorMessage=userLogin?.message
+            }
          ;
           },
-          error: (error) => {
-            this.userSubject.next(error.error)
+          error: (error:any) => {
+console.log("error in login",error);
 
           },
         });
 
-        this.user.subscribe({
-          next:(userLogin)=>{
-            console.log(userLogin);
-            if(userLogin?.result.token){
-              this.auth.setToken(userLogin?.result.token)
-               this.router.navigate([this.returnUrl]);
-            }else{
-              this.errorMessage=userLogin?.message
-            }
+        // this.user.subscribe({
+        //   next:(userLogin)=>{
+        //     console.log(userLogin);
+        //     if(userLogin?.result.token){
+        //       this.auth.setToken(userLogin?.result.token)
+        //        this.router.navigate([this.returnUrl]);
+        //     }else{
+        //       this.errorMessage=userLogin?.message
+        //     }
 
-          },
+        //   },
 
-        })
+        // })
 
 
     }

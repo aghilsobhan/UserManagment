@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './utils/AuthGuard';
+import { AccountComponent } from './pages/account/account.component';
+import { UserLoginComponent } from './pages/account/login/user-login.component';
 
 const routes: Routes = [
   //lazy loading
@@ -21,7 +23,9 @@ const routes: Routes = [
       canActivate:[AuthGuard]
   },
 
-
+{path:'',
+  component:UserLoginComponent
+}
 
 ];
 
