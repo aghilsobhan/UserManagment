@@ -29,7 +29,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         }
 
         // Log the error (can log to a logging service)
-        console.error(errorMessage);
+
 
         // Handle specific error responses (e.g., redirecting to login on 401)
         if (error.status === 401) {
@@ -40,7 +40,7 @@ export class ResponseInterceptor implements HttpInterceptor {
           console.log(error.status);
         } else {
           // Optionally, you can display a generic error notification or dialog
-          alert(errorMessage);
+         
         }
 
         return throwError(errorMessage);

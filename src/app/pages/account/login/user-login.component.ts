@@ -76,7 +76,8 @@ export class UserLoginComponent implements OnInit {
           }
         },
         error: (error: any) => {
-          console.log(this.err.getErrorHandling());
+          this.errorMessage=this.err.getErrorHandling().message;
+          console.log(this.err.getErrorHandling().message);
           console.log('error in login', error);
         },
       });
