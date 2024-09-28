@@ -12,9 +12,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardModule } from './pages/dashboard/module/dashboard.module';
-import { SetHeaderInterceptor } from './utils/interceptor/set-header.interceptor';
+import { SetHeaderInterceptor } from './utils/interceptor/setheader/set-header.interceptor';
 
 import { InitializerServiceService } from './utils/initializer-service.service';
+import { ResponseInterceptor } from './utils/interceptor/setresponse/response.interceptor';
 export function initializeUser(initializeService: InitializerServiceService) {
   return () => initializeService.init();
 }
@@ -36,6 +37,7 @@ export function initializeUser(initializeService: InitializerServiceService) {
       deps: [InitializerServiceService],
     },
     { provide: HTTP_INTERCEPTORS, useClass: SetHeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

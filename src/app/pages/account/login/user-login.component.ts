@@ -10,7 +10,7 @@ import { LoginRequest } from 'src/app/models/user/loginRequest';
 import { LoginResponse } from 'src/app/models/user/loginResponse';
 import { AccountsService } from 'src/app/service/account/accounts.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
-
+import { ErrorHandlingService } from 'src/app/service/errors/error-handling.service';
 
 @Component({
   selector: 'app-user-login',
@@ -20,14 +20,15 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class UserLoginComponent implements OnInit {
   customForm!: FormGroup;
   returnUrl: string = '';
-  errorMessage :string | any='';
-  loginRequest!:LoginRequest;
+  errorMessage: string | any = '';
+  loginRequest!: LoginRequest;
   constructor(
     private accountService: AccountsService,
     private toast: ToastrService,
     private router: Router,
     private rout: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private err: ErrorHandlingService
   ) {}
 
   ngOnInit(): void {
@@ -48,51 +49,51 @@ export class UserLoginComponent implements OnInit {
     }
     if (this.customForm.valid) {
       this.loginRequest = {
-        userName: 'superadmin',
+        userName: 'superarasdmin',
         password: 'Qwe123!@#',
         captchaText: 'bar',
         keepMeSignedIn: true,
       };
 
-        this.accountService.loginRequest(this.loginRequest).subscribe({
-          next: (userLogin:LoginResponse) => {
-            if(userLogin?.result.token){
-              this.auth.setToken(userLogin?.result.token)
-              this.accountService.getProfile().subscribe({
-                next:(profileUser:ProfileModel)=>{
-                  this.auth.setAccountProfile(profileUser);
-                  this.router.navigate([this.returnUrl]);
-                },error:(error :any)=>{console.log(error);}
-               })
+      this.accountService.loginRequest(this.loginRequest).subscribe({
+        next: (userLogin: LoginResponse) => {
+          if (userLogin?.result.token) {
+            this.auth.setToken(userLogin?.result.token);
+            this.accountService.getProfile().subscribe({
+              next: (profileUser: ProfileModel) => {
+                this.auth.setAccountProfile(profileUser);
+                this.router.navigate([this.returnUrl]);
+              },
+              error: (error: any) => {
+                console.log('error inner btn login', error);
+                console.log();
+              },
+            });
+          } else {
+            console.log('error in else if login', userLogin);
 
-            }else{
-              console.log('error in else if login',userLogin);
+            this.errorMessage = userLogin?.message;
+          }
+        },
+        error: (error: any) => {
+          console.log(this.err.getErrorHandling());
+          console.log('error in login', error);
+        },
+      });
 
-              this.errorMessage=userLogin?.message
-            }
-         ;
-          },
-          error: (error:any) => {
-console.log("error in login",error);
+      // this.user.subscribe({
+      //   next:(userLogin)=>{
+      //     console.log(userLogin);
+      //     if(userLogin?.result.token){
+      //       this.auth.setToken(userLogin?.result.token)
+      //        this.router.navigate([this.returnUrl]);
+      //     }else{
+      //       this.errorMessage=userLogin?.message
+      //     }
 
-          },
-        });
+      //   },
 
-        // this.user.subscribe({
-        //   next:(userLogin)=>{
-        //     console.log(userLogin);
-        //     if(userLogin?.result.token){
-        //       this.auth.setToken(userLogin?.result.token)
-        //        this.router.navigate([this.returnUrl]);
-        //     }else{
-        //       this.errorMessage=userLogin?.message
-        //     }
-
-        //   },
-
-        // })
-
-
+      // })
     }
   }
 }
