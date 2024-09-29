@@ -31,8 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css" 
-
+              "node_modules/ngx-toastr/toastr.css",
+              "@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           },
@@ -101,7 +101,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           }

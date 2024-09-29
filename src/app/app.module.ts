@@ -16,6 +16,19 @@ import { SetHeaderInterceptor } from './utils/interceptor/setheader/set-header.i
 
 import { InitializerServiceService } from './utils/initializer-service.service';
 import { ResponseInterceptor } from './utils/interceptor/setresponse/response.interceptor';
+import { ModuleUiModule } from './ui/module/module-ui.module';
+
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { HeaderComponent } from './layout/header/header.component';
+
+
+import {MatButtonModule} from '@angular/material/button';
+import {NgIf} from '@angular/common';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 export function initializeUser(initializeService: InitializerServiceService) {
   return () => initializeService.init();
 }
@@ -28,6 +41,9 @@ export function initializeUser(initializeService: InitializerServiceService) {
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     DashboardModule,
+    ModuleUiModule,
+    MatSidenavModule, NgIf, MatButtonModule,
+    MatToolbarModule, MatIconModule
   ],
   providers: [
     {
@@ -40,5 +56,6 @@ export function initializeUser(initializeService: InitializerServiceService) {
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

@@ -11,10 +11,11 @@ import { ProfileModel } from 'src/app/models/user/getprofile';
 export class DashboardComponent implements OnInit {
   userInfo!: ProfileModel;
   userName:string='';
+  showFiller = false;
   constructor(private getProfile: AuthService) {}
   ngOnInit(): void {
-    this.userInfo = this.getProfile.getAccountProfile().result;
-    this.userName=this.userInfo.firstName
+    // this.userInfo = this.getProfile.getAccountProfile().result;
+    // this.userName=this.userInfo.firstName
 
   }
 }

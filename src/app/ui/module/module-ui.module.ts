@@ -6,16 +6,21 @@ import { InputComponent } from '../input/input.component';
 import { SlidshowComponent } from '../slidshow/slidshow.component';
 import { LinkRoutComponent } from '../link-rout/link-rout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogViewComponent } from '../dialog-view/dialog-view.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent],
+  declarations: [ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent,DialogViewComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
+
 
   ],
-  exports:[ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent]
+
+  exports:[ButtonComponent,InputComponent,SlidshowComponent,LinkRoutComponent,DialogViewComponent]
 })
 export class ModuleUiModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +12,7 @@ import { LoginResponse } from 'src/app/models/user/loginResponse';
 import { AccountsService } from 'src/app/service/account/accounts.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ErrorHandlingService } from 'src/app/service/errors/error-handling.service';
+import { DialogViewComponent } from 'src/app/ui/dialog-view/dialog-view.component';
 
 @Component({
   selector: 'app-user-login',
@@ -28,7 +30,8 @@ export class UserLoginComponent implements OnInit {
     private router: Router,
     private rout: ActivatedRoute,
     private auth: AuthService,
-    private err: ErrorHandlingService
+    private err: ErrorHandlingService,
+    private dialog:MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +44,7 @@ export class UserLoginComponent implements OnInit {
 
   save() {
     this.returnUrl = this.rout.snapshot.queryParams['returnUrl'] || 'dashboard';
+
     if (this.customForm.invalid) {
       this.customForm.markAllAsTouched();
     }
@@ -57,6 +61,7 @@ export class UserLoginComponent implements OnInit {
 
       this.accountService.loginRequest(this.loginRequest).subscribe({
         next: (userLogin: LoginResponse) => {
+
           if (userLogin?.result.token) {
             this.auth.setToken(userLogin?.result.token);
             this.accountService.getProfile().subscribe({
@@ -71,29 +76,27 @@ export class UserLoginComponent implements OnInit {
             });
           } else {
             console.log('error in else if login', userLogin);
-
             this.errorMessage=this.err.getErrorHandling().message;
           }
         },
         error: (error: any) => {
-          this.errorMessage=this.err.getErrorHandling().message;
-
+        //  this.errorMessage=this.err.getErrorHandling().message;
         },
       });
 
-      // this.user.subscribe({
-      //   next:(userLogin)=>{
-      //     console.log(userLogin);
-      //     if(userLogin?.result.token){
-      //       this.auth.setToken(userLogin?.result.token)
-      //        this.router.navigate([this.returnUrl]);
-      //     }else{
-      //       this.errorMessage=userLogin?.message
-      //     }
+    //   // this.user.subscribe({
+    //   //   next:(userLogin)=>{
+    //   //     console.log(userLogin);
+    //   //     if(userLogin?.result.token){
+    //   //       this.auth.setToken(userLogin?.result.token)
+    //   //        this.router.navigate([this.returnUrl]);
+    //   //     }else{
+    //   //       this.errorMessage=userLogin?.message
+    //   //     }
 
-      //   },
+    //   //   },
 
-      // })
-    }
+    //   // })
+     }
   }
 }

@@ -17,10 +17,11 @@ export class InitializerServiceService {
     const token = this.authService.getToken();
     return new Promise<Boolean>((resolve, reject) => {
       if (token) {
-        debugger
+    
         this.accountService.getProfile().subscribe({
           next: (userInfo: ProfileModel) => {
             this.authService.setAccountProfile(userInfo);
+
 
             resolve(true);
           },
