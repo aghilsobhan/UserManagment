@@ -49,7 +49,7 @@ export class UserLoginComponent implements OnInit {
     }
     if (this.customForm.valid) {
       this.loginRequest = {
-        userName: 'superarasdmin',
+        userName: 'superadmin',
         password: 'Qwe123!@#',
         captchaText: 'bar',
         keepMeSignedIn: true,
@@ -66,19 +66,18 @@ export class UserLoginComponent implements OnInit {
               },
               error: (error: any) => {
                 console.log('error inner btn login', error);
-                console.log();
+                this.errorMessage=this.err.getErrorHandling().message;
               },
             });
           } else {
             console.log('error in else if login', userLogin);
 
-            this.errorMessage = userLogin?.message;
+            this.errorMessage=this.err.getErrorHandling().message;
           }
         },
         error: (error: any) => {
           this.errorMessage=this.err.getErrorHandling().message;
-          console.log(this.err.getErrorHandling().message);
-          console.log('error in login', error);
+
         },
       });
 

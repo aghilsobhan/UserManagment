@@ -8,42 +8,29 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ErrorHandlingService } from 'src/app/service/errors/error-handling.service';
+import { ErrorResponse } from 'src/app/models/errorResponse';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
 
-  constructor(private errorService:ErrorHandlingService) {}
+  constructor(private errorService:ErrorHandlingService,private toast:ToastrService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        let errorMessage = '';
+      catchError((error:HttpErrorResponse)=>{
+        const errorResponse:ErrorResponse={
+          result:error.error.result||null,
+          message:error.error.message||"ورود ناشناخته",
+          messages:error.error.error?.messages || null,
+          status:error.error.status
 
-        if (error.error instanceof ErrorEvent) {
-          // Client-side error
-          errorMessage = `خطای سمت سرور مجددا تلاش کنید`;
-        } else {
-          // Server-side error
-          console.log(error);
-          this.errorService.setErrorHandling(error.error);
         }
+       
+        this.errorService.setErrorHandling(errorResponse);
+        this.toast.error(errorResponse.message);
+        return throwError(() => new Error(errorResponse.message) );
 
-        // Log the error (can log to a logging service)
-
-
-        // Handle specific error responses (e.g., redirecting to login on 401)
-        if (error.status === 401) {
-          // Navigate to login page if unauthorized
-          errorMessage = 'خطا در برقراری ارتباط';
-        } else if (error.status === 404) {
-          // Navigate to a custom error page
-          console.log(error.status);
-        } else {
-          // Optionally, you can display a generic error notification or dialog
-         
-        }
-
-        return throwError(errorMessage);
       })
     );
   }
