@@ -2,14 +2,18 @@
   width: 100vw;
   height: 100vh;
   border: 1px solid rgba(0, 0, 0, 0.5);
+
 }
 
 .example-sidenav-content {
   height: 100%;
+
 }
 
 .example-sidenav {
   padding: 20px;
+  border: none;
+  background-color: rgb(250, 247, 247);
 }
 .example-spacer {
   flex: 1 1 auto;

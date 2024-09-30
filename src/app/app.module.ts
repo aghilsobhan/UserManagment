@@ -26,9 +26,10 @@ import {NgIf} from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
 
-import { ModuleUserModule } from './pages/users/module-user/module-user.module';
+
 import { SharedModule } from './shared/shared/shared.module';
-import { MainComponent } from './pages/main/main.component';
+
+import { ModuleMainModule } from './pages/main/module-main/module-main.module';
 
 
 
@@ -36,7 +37,7 @@ export function initializeUser(initializeService: InitializerServiceService) {
   return () => initializeService.init();
 }
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, MainComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,13 +45,13 @@ export function initializeUser(initializeService: InitializerServiceService) {
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ModuleUiModule,
-    ModuleUserModule,
     MatSidenavModule,
     NgIf,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    ModuleMainModule
   ],
   providers: [
     {

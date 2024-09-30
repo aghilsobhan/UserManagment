@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './utils/AuthGuard';
 
 import { UserLoginComponent } from './pages/account/login/user-login.component';
+import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   //lazy loading
@@ -14,23 +15,16 @@ const routes: Routes = [
         (q) => q.AccountModule
       ),
   },
+
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('./pages/main/dashboard/dashboard.component').then(
-        (q) => q.DashboardComponent
+    path: '',
+    loadChildren: () =>
+      import('./pages/main/module-main/module-main.module').then(
+        (q) => q.ModuleMainModule
       ),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'profile',
-    loadComponent: () =>
-      import('./pages/main/profile/profile.component').then(
-        (q) => q.ProfileComponent
-      ),
+      canActivate: [AuthGuard],
   },
 
-  { path: '', component: UserLoginComponent },
 ];
 
 @NgModule({

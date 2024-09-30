@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from '../user.component';
 import { CreateComponent } from '../create/create.component';
 import { ListComponent } from '../list/list.component';
 import { UpdateComponent } from '../update/update.component';
+import { UserComponent } from '../user.component';
 
-const routes: Routes = [{path:'user',component:UserComponent,children:[
-  {path:'create',component:CreateComponent},
-  {path:'list',component:ListComponent},
-  {path:'update:id',component:UpdateComponent},
-]}];
+const routes: Routes = [
+  {
+    path: '',
+    component: UserComponent,
+    children: [
+      { path: 'create', component: CreateComponent },
+      { path: 'list', component: ListComponent },
+      { path: 'update:id', component: UpdateComponent },
+
+    ],
+  },
+  {path:'',redirectTo:'create',pathMatch:'full'}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ModuleUserRoutingModule { }
+export class ModuleUserRoutingModule {}

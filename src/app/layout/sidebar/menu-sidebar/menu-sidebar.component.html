@@ -1,9 +1,20 @@
-<li>
-    <a [routerLink]="menu.path" routerLinkActive="active-item">{{menu.title}}</a>
-    <!-- <ul *ngIf="menu.children">
-      <li *ngFor="let subItem of menu.children; trackBy:getTrackById">
-        <a [routerLink]="subItem.path" routerLinkActive="active-item">{{subItem.title}}</a>
-      </li>
-    </ul> -->
+<div class="mb-3">
+  <div>
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-icon fontIcon="home">date_range</mat-icon>
+        
 
-</li>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon fontIcon="home">date_range</mat-icon>
+            <a [routerLink]="menu.path">{{ menu.title }}</a>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!-- <li *ngFor="let subItem of menu.children">
+        <a [routerLink]="subItem.path" routerLinkActive="active-item">{{subItem.title}}</a>
+      </li> -->
+  </div>
+</div>

@@ -2,7 +2,9 @@
   <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="showSidebar">
     <h1>Company Name</h1>
     <ul>
-      <app-menu-sidebar *ngFor="let menu of menus" [menu]="menu"></app-menu-sidebar>
+      <app-menu-sidebar *ngFor="let menu of menus" [menu]="menu">
+
+      </app-menu-sidebar>
     </ul>
   </mat-drawer>
 
