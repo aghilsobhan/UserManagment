@@ -8,12 +8,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MenuSidebarComponent } from 'src/app/layout/sidebar/menu-sidebar/menu-sidebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [SidebarComponent,HeaderComponent],
+  declarations: [SidebarComponent,HeaderComponent,MenuSidebarComponent],
   imports: [
     CommonModule,
-    MatSidenavModule, NgIf, MatButtonModule ,MatToolbarModule, MatButtonModule, MatIconModule ],
-  exports:[SidebarComponent,HeaderComponent]
+    MatSidenavModule, NgIf, MatButtonModule ,MatToolbarModule, MatButtonModule, MatIconModule ,RouterModule],
+  exports:[SidebarComponent,HeaderComponent,MenuSidebarComponent]
 })
 export class SharedModule { }

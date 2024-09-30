@@ -11,39 +11,46 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DashboardModule } from './pages/dashboard/module/dashboard.module';
+
 import { SetHeaderInterceptor } from './utils/interceptor/setheader/set-header.interceptor';
 
 import { InitializerServiceService } from './utils/initializer-service.service';
 import { ResponseInterceptor } from './utils/interceptor/setresponse/response.interceptor';
 import { ModuleUiModule } from './ui/module/module-ui.module';
-
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-import { HeaderComponent } from './layout/header/header.component';
 
 
 import {MatButtonModule} from '@angular/material/button';
 import {NgIf} from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
+
+import { ModuleUserModule } from './pages/users/module-user/module-user.module';
+import { SharedModule } from './shared/shared/shared.module';
+import { MainComponent } from './pages/main/main.component';
+
+
+
 export function initializeUser(initializeService: InitializerServiceService) {
   return () => initializeService.init();
 }
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, PageNotFoundComponent, MainComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    DashboardModule,
     ModuleUiModule,
-    MatSidenavModule, NgIf, MatButtonModule,
-    MatToolbarModule, MatIconModule
+    ModuleUserModule,
+    MatSidenavModule,
+    NgIf,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    SharedModule
   ],
   providers: [
     {
