@@ -11,13 +11,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuSidebarComponent } from 'src/app/layout/sidebar/menu-sidebar/menu-sidebar.component';
 import { RouterModule } from '@angular/router';
 import {MatTreeModule} from '@angular/material/tree';
-
+import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [SidebarComponent,HeaderComponent,MenuSidebarComponent],
   imports: [
     CommonModule,
+    MatSidenavModule,
+    MatListModule,
     MatSidenavModule,MatExpansionModule,MatFormFieldModule, NgIf, MatButtonModule ,MatToolbarModule, MatButtonModule, MatIconModule ,RouterModule,MatTreeModule],
   exports:[SidebarComponent,HeaderComponent,MenuSidebarComponent]
 })

@@ -30,6 +30,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SharedModule } from './shared/shared/shared.module';
 
 import { ModuleMainModule } from './pages/main/module-main/module-main.module';
+import { PersonalUserComponent } from './pages/main/users/create/personal-user/personal-user.component';
+import { AddressUserComponent } from './pages/main/users/create/address-user/address-user.component';
+import { ViewInformationComponent } from './pages/main/users/create/view-information/view-information.component';
 
 
 

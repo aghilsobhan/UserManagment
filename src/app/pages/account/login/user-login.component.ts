@@ -26,7 +26,7 @@ export class UserLoginComponent implements OnInit {
   loginRequest!: LoginRequest;
   constructor(
     private accountService: AccountsService,
-    private toast: ToastrService,
+   
     private router: Router,
     private rout: ActivatedRoute,
     private auth: AuthService,

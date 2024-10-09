@@ -1,20 +1,49 @@
-<div class="mb-3">
-  <div>
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
-        <mat-icon fontIcon="home">date_range</mat-icon>
-        
+<ul>
+  <li
+    *ngIf="menu.children?.length === 0"
+    class="h-[35px] bg-white rounded-md shadow-sm mb-2 items-center justify-start pr-2 hover:bg-[#F8F5F5]  flex"
+    routerLinkActive="active-item "
+  >
+    <mat-icon style="margin-left: 5px ;">{{ menu.icon }}</mat-icon>
+    <a [routerLink]="menu.path" class="w-[100%] pr-1">{{ menu.title }}</a>
+  </li>
+</ul>
 
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon fontIcon="home">date_range</mat-icon>
-            <a [routerLink]="menu.path">{{ menu.title }}</a>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <!-- <li *ngFor="let subItem of menu.children">
-        <a [routerLink]="subItem.path" routerLinkActive="active-item">{{subItem.title}}</a>
-      </li> -->
-  </div>
-</div>
+<!-- <div *ngIf="menu.children?.length !== 0" >
+  <mat-accordion class="example-headers-align" style="width: fit-content;" >
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header >
+        <mat-panel-title >
+          <mat-icon fontIcon="home" ></mat-icon>
+          <a [routerLink]="menu.path">{{ menu.title }}</a>
+        </mat-panel-title>
+
+
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div> -->
+<mat-accordion
+  *ngIf="menu.children?.length !== 0"
+  class="custom-expansion-panel mb-4"
+>
+  <mat-expansion-panel class="menu-item">
+    <mat-expansion-panel-header class="hover:bg-[#327BEB]">
+      <mat-panel-title>
+        <mat-icon style="margin-left: 5px">{{ menu.icon }}</mat-icon>
+        {{ menu.title }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-nav-list *ngIf="menu.children?.length !== 0">
+
+
+        <a mat-list-item *ngFor="let submenu of menu.children" class="  pr-3 m-2 text-black hover:cursor-pointer hover:bg-slate-300" [routerLink]="submenu.path" routerLinkActive="active-item"> {{submenu.title}}</a>
+
+      <!-- <a mat-list-item href="#" routerLink="/overview">نمای کلی</a>
+      <a  href="#" routerLink="/reports">گزارشات</a> -->
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-accordion>

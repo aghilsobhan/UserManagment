@@ -1,19 +1,15 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="showSidebar">
+  <mat-drawer #drawer class="example-sidenav" mode="over" [opened]="showSidebar" position="end">
     <h1>Company Name</h1>
     <ul>
       <app-menu-sidebar *ngFor="let menu of menus" [menu]="menu">
-
       </app-menu-sidebar>
     </ul>
   </mat-drawer>
-
   <div class="example-sidenav-content">
     <app-header class="example-spacer" (sideToggle)="toggleSideBar()"></app-header>
     <div class="main-content">
       <router-outlet class="main-content"></router-outlet>
     </div>
-
   </div>
-
 </mat-drawer-container>

@@ -51,7 +51,11 @@ body.dark {
   color: #ffffff;
 }
 
+app-menu-sidebar .mat-expansion-panel-body {
+  padding: 0 !important; // Enforce padding to 0 using !important
+  margin: 0; // Optional: Set margin to 0 if needed
 
+}
 
 
 

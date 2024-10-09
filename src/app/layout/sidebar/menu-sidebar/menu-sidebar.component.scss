@@ -1,23 +1,54 @@
+
 .active-item{
-  background-color:#3F51B5;
+  background-color: #327BBD;
+  color: black;
+}
+.custom-expansion-panel {
+  width: 100%; // Full width for the sidebar
+  background-color: #343a40; // Dark background for sidebar
   color: white;
-  transition: all ;
-  transition-duration: 400ms;
-}
-.example-action-buttons {
-  padding-bottom: 20px;
+
+  mat-expansion-panel {
+    margin-bottom: 8px; // Adds margin between each panel
+
+    mat-nav-list {
+      padding: 0; // Set padding to 0 for the nav list
+      a {
+        padding: 10px 16px; // Add padding for links
+        color: white;
+
+        &:hover {
+          background-color: #929292; // Change background color on hover
+        }
+      }
+    }
+  }
+
+  mat-expansion-panel-header {
+    height: 35px;
+    padding: 5px;
+
+    .mat-panel-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        margin-right: 10px; // Space between icon and text
+      }
+    }
+
+    mat-icon {
+      transition: transform 0.2s ease-in-out; // Transition for icon rotation
+    }
+  }
+
+  /* Rotate the icon when expanded */
+  mat-icon.expanded {
+    transform: rotate(180deg);
+  }
 }
 
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-}
 
-.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
-  margin-left: 8px;
-}
-.mat-expansion-panel-header span{
 
-  border-color: black;
-
-}

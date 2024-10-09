@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ThemeService } from './service/theme.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { ThemeService } from './service/theme.service';
 })
 export class AppComponent {
   title = 'user-management';
+  @Input() test=<number>(0);
+  tes=this.test * 2;
 constructor(private themeService:ThemeService){}
   toggleTheme() {
     const currentTheme = this.themeService.getTheme();

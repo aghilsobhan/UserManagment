@@ -9,7 +9,6 @@ import { MenuItem } from 'src/app/models/menuItem';
 })
 export class SidebarComponent implements OnInit {
   @Input() menus:MenuItem[]=[]
-
   showSidebar = true;
 ngOnInit(): void {}
 toggleSideBar(){
